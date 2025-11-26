@@ -304,32 +304,72 @@
       background: radial-gradient(circle at top, rgba(15, 118, 110, 0.55), transparent 55%);
     }
 
-    .about-content {
-      max-width: 44rem;
+    .about-wrapper {
+      display: flex;
+      flex-direction: column;
+      gap: 2rem;
+      max-width: 1120px;
       margin: 0 auto;
+      padding-left: 1.5rem;
+      padding-right: 1.5rem;
     }
 
-    .about-grid {
+    .about-layout {
       display: flex;
       flex-direction: column;
       gap: 1.5rem;
     }
 
-    .about-text-block {
-      background-color: rgba(15, 23, 42, 0.9);
-      border-radius: 0.75rem;
-      padding: 1rem 1.1rem;
-      border: 1px solid rgba(148, 163, 184, 0.35);
+    .about-text {
+      flex: 1;
     }
 
-    .about-placeholder {
-      font-size: 0.9rem;
+    .about-text p {
+      font-size: 0.95rem;
       color: #d1d5db;
+      margin: 0 0 1rem 0;
+      line-height: 1.6;
     }
 
-    .about-dev-note {
-      margin-top: 0.75rem;
-      font-size: 0.82rem;
+    .about-text p:last-of-type {
+      margin-bottom: 1.25rem;
+    }
+
+    .about-highlights {
+      list-style: none;
+      padding: 0;
+      margin: 0 0 1.5rem 0;
+      display: flex;
+      flex-direction: column;
+      gap: 0.75rem;
+    }
+
+    .about-highlights li {
+      font-size: 0.95rem;
+      color: #d1d5db;
+      padding-left: 1.5rem;
+      position: relative;
+    }
+
+    .about-highlights li::before {
+      content: "✓";
+      position: absolute;
+      left: 0;
+      color: #38bdf8;
+      font-weight: bold;
+    }
+
+    .about-media {
+      flex: 1;
+    }
+
+    .about-figure {
+      margin: 0;
+    }
+
+    .about-caption {
+      margin-top: 0.5rem;
+      font-size: 0.8rem;
       color: #9ca3af;
     }
     /* CSS:ABOUT-END */
@@ -512,7 +552,17 @@
         flex-direction: row;
       }
 
-      .about-text-block {
+      .about-layout {
+        flex-direction: row;
+        align-items: center;
+      }
+
+      .about-text {
+        flex: 1;
+        padding-right: 1rem;
+      }
+
+      .about-media {
         flex: 1;
       }
 
@@ -596,30 +646,40 @@
 
       <!-- SECTION:ABOUT-START -->
       <section id="about" class="section section-about" aria-labelledby="about-heading">
-        <div class="section-inner">
-          <div class="about-content">
-            <h2 id="about-heading" class="section-title">關於我（之後會用 Section SDD 替換）</h2>
-            <p class="section-lead">
-              這裡是 About 區的占位內容，未來會用來介紹開發者的背景、經歷、興趣與學習方向，目前先以簡單文字與區塊結構示意，方便日後整段替換。
-            </p>
-            <div class="about-grid">
-              <div class="about-text-block">
-                <p class="about-placeholder">
-                  區塊一：可以放簡短的個人介紹，例如目前職位、主要技術堆疊、常用工具，以及希望帶給使用者或合作夥伴的價值。也可以加入一兩句較個人的敘述，讓網站更有人味。
-                </p>
-                <p class="about-dev-note">
-                  開發者說明：未來用 Section SDD 的 Prompt 產生新的 About 區時，請把新的
-                  <code>&lt;section id="about" …&gt;…&lt;/section&gt;</code>
-                  程式碼整段貼在
-                  <!-- SECTION:ABOUT-START -->
-                  與
-                  <!-- SECTION:ABOUT-END -->
-                  這兩個註解中間，完全取代現在這一區。
-                </p>
+        <div class="about-wrapper">
+          <h2 id="about-heading" class="section-title">關於我</h2>
+          
+          <div class="about-layout">
+            <div class="about-text">
+              <p>
+                我是一名前端工程師，擅長使用 React、JavaScript、HTML / CSS 等現代前端技術。除了開發工作之外，我也熱愛教學，喜歡將複雜的技術概念轉化為易懂的內容，幫助更多人進入前端開發的世界。
+              </p>
+              <p>
+                我相信清晰的溝通是成功的基礎，無論是在代碼編寫、團隊協作還是教學分享上。我喜歡深入思考問題，並提供既能解決當下需求、又能為未來擴展預留空間的方案。
+              </p>
+              
+              <h3 style="font-size: 0.95rem; color: #e5e7eb; margin: 1.5rem 0 0.75rem 0;">我可以幫助你的地方：</h3>
+              <ul class="about-highlights">
+                <li>打造高品質、快速響應的網站與應用程式</li>
+                <li>提供前端技術諮詢與代碼優化建議</li>
+                <li>分享前端開發知識，幫助團隊與個人成長</li>
+              </ul>
+
+              <div class="btn-row">
+                <a class="btn btn-primary" href="#projects">查看作品集</a>
+                <a class="btn btn-ghost" href="#contact">聯絡我</a>
               </div>
-              <div class="about-text-block">
-                <p class="about-placeholder">
-                  區塊二：可以放更完整的經歷與故事，例如：學校或工作背景、轉職過程、參與過的專案類型、擅長解決的問題，或是你對前端開發的想法與職涯目標等。
-                </p>
-                <p class="about-dev-note">
-                  提醒：只要保持 section 的 id="about" 與 class="section section-about" 之類結構不變，其
+            </div>
+
+            <div class="about-media">
+              <figure class="about-figure">
+                <img src="https://images.unsplash.com/photo-1517694712202-14dd9538aa97?auto=format&fit=crop&w=800&q=80" alt="專注於筆電前進行開發工作的工程師" loading="lazy">
+                <figcaption class="about-caption">
+                  示意圖：前端工程師在開發中的日常工作樣貌
+                </figcaption>
+              </figure>
+            </div>
+          </div>
+        </div>
+      </section>
+      <!-- SECTION:ABOUT-END -->
